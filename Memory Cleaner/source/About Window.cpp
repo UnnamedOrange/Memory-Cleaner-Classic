@@ -19,46 +19,28 @@ namespace AboutWindow
 	};
 	const size_t size = sizeof(szItem) / sizeof(TCHAR*);
 
-	const TCHAR* szText[] =
+	const wchar_t* szText[] =
 	{
-		TEXT
-		(
-			"Orange Software\r\n"
-			"版本 %d.%d.%d.%d"
-		)
+		L"Author: UnnamedOrange\r\n"
+		"Version: "
 #ifdef _M_IX86
-		L"\r\n" // always Unicode
-		L"32 位"
+		"32 位"
 #elif _M_X64
-		L"\r\n" // always Unicode
-		L"64 位"
+		"64 位"
 #endif
-#ifndef _RELEASE
-		TEXT
-		(
-			"\r\n\r\n"
-			"Internal Version"
-		)
+		" %d.%d.%d.%d"
+#ifdef _DEBUG
+		"\r\n\r\n"
+		"Debug Build"
 #endif
-		L"\r\n\r\n" // always Unicode
-		L"致用户（好像只有我）：\r\n"
-		L"        感谢您使用 Memory Cleaner。随着时间的推移，我不得不承认我年少时犯的错误："
-		L"小时候写的代码太难维护啦！我不得不做出一个艰难的决定：这是 Memory Cleaner 3 的最后一次更新。"
-		L"本次更新增加了 64 位的支持。更新的初衷本是想看看是什么 bug 导致了全屏模式下没有隐藏悬浮窗，"
-		L"没想到居然是因为没有编译！！！不管怎么说，我自己都已经使用 Memory Cleaner 至少 4 年了，"
-		L"感谢大家的支持与陪伴（雾）！新版本，将会在不久的将来推出吼……"
 		,
-		TEXT
-		(
-			"已使用的 CPU 时间\r\n"
-			"%s\r\n\r\n"
-			"使用的物理内存\r\n"
-			"%s"
-		),
-		TEXT
-		(
-			""
-		)
+
+		L"已使用的 CPU 时间\r\n"
+		"%s\r\n\r\n"
+		"使用的物理内存\r\n"
+		"%s",
+
+		L""
 	};
 }
 
