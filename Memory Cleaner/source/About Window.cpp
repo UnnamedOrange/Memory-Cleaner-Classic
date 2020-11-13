@@ -29,6 +29,8 @@ namespace AboutWindow
 		"64 位"
 #endif
 		" %d.%d.%d.%d"
+		"\r\n"
+		"编译时间: %s, %s"
 #ifdef _DEBUG
 		"\r\n\r\n"
 		"Debug Build"
@@ -103,7 +105,8 @@ namespace AboutWindow
 				case 0:
 				{
 					tk::SetWindowTextFormat(hwndEdit, szText[sel],
-						mc.MajorVerH(), mc.MajorVerL(), mc.MinorVerH(), mc.MinorVerL());
+						mc.MajorVerH(), mc.MajorVerL(), mc.MinorVerH(), mc.MinorVerL(),
+						TEXT(__DATE__), TEXT(__TIME__));
 					break;
 				}
 				case 1:

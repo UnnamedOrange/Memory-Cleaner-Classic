@@ -149,28 +149,19 @@ namespace MainWindow
 {
 	BOOL WndStruct::OnCreate(HWND hwnd, LPCREATESTRUCT lpCreateStruct)
 	{
-		//确保句柄赋值
+		// 确保句柄赋值
 		hwndMain = hwnd;
 
-		//初始化类
+		// 初始化类
 		tray.Init(hwnd);
 		tray.Add(GetIconSmall(), szAppName);
 
-		//发送初始化消息
+		// 发送初始化消息
 		SEND_WM_RESETPOSITION(hwnd, mc.mcc.bShow, FALSE);
 		if (!bLaunch)
-		{
 			PostMessage(hwnd, WM_COMMAND, IDM_SETTING, 0);
-		}
 
-		//if (mc.isWin7)
-		//{
-		//	DWM_BLURBEHIND bb = { 0 };
-		//	bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
-		//	bb.fEnable = TRUE;
-		//	bb.hRgnBlur = NULL;
-		//	DwmEnableBlurBehindWindow(hWnd, &bb);
-		//}
+		SetTimer(hwnd, 0, 1000, nullptr);
 
 		Update();
 		return TRUE;
@@ -267,6 +258,15 @@ namespace MainWindow
 		PostQuitMessage(0);
 		hwndMain = NULL;
 		delete this;
+	}
+	VOID WndStruct::OnTimer(HWND hwnd, UINT id)
+	{
+		if (id == 0)
+		{
+			if (mc.mcc.bShow)
+				SetWindowPos(hwndMain, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+			SetTimer(hwnd, 0, 1000, nullptr);
+		}
 	}
 
 	VOID WndStruct::OnPaint(HWND hwnd)
@@ -427,6 +427,7 @@ LRESULT CALLBACK MainWindow::WndStruct::WndProc(HWND hwnd, UINT message, WPARAM 
 		HANDLE_MSG(hwnd, WM_DISPLAYCHANGE, OnDisplayChange);
 		HANDLE_MSG(hwnd, WM_QUERYENDSESSION, OnQueryEndSession);
 		HANDLE_MSG(hwnd, WM_DESTROY, OnDestroy);
+		HANDLE_MSG(hwnd, WM_TIMER, OnTimer);
 
 		HANDLE_MSG(hwnd, WM_TRAY, OnTray);
 		HANDLE_MSG(hwnd, WM_FINDINSTANCE, OnFindInstance);

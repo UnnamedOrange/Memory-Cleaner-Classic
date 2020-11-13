@@ -56,6 +56,7 @@ namespace MainWindow
 		VOID OnDisplayChange(HWND hwnd, UINT bitsPerPixel, UINT cxScreen, UINT cyScreen);
 		BOOL OnQueryEndSession(HWND hwnd);
 		VOID OnDestroy(HWND hwnd);
+		VOID OnTimer(HWND hwnd, UINT id);
 
 		VOID OnPaint(HWND hwnd);
 		VOID OnTray(HWND hwnd, UINT message, UINT identifier);
