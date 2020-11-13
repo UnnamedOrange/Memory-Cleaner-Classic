@@ -69,6 +69,7 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR szCmdL
 
 MemoryCleaner::MemoryCleaner(LPCTSTR lpcGUID, LPCTSTR lpcAppName, INT nProcessPriority, INT nThreadPriority) : tk::App(szGUID, szAppName/*, nProcessPriority, nThreadPriority*/)
 {
+	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE);
 	ReadConfig();
 }
 MemoryCleaner::~MemoryCleaner()
