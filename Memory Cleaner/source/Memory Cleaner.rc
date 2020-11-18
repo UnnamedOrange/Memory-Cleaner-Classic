@@ -52,8 +52,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,3,0,0
- PRODUCTVERSION 3,3,0,0
+ FILEVERSION 3,3,0,1
+ PRODUCTVERSION 3,3,0,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -70,12 +70,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "UnnamedOrange"
             VALUE "FileDescription", "Memory Cleaner"
-            VALUE "FileVersion", "3.3.0.0"
+            VALUE "FileVersion", "3.3.0.1"
             VALUE "InternalName", "Memory Cleaner.exe"
             VALUE "LegalCopyright", "Copyright (C) 2016-2020"
             VALUE "OriginalFilename", "Memory Cleaner.exe"
             VALUE "ProductName", "Memory Cleaner"
-            VALUE "ProductVersion", "3.3.0.0"
+            VALUE "ProductVersion", "3.3.0.1"
         END
     END
     BLOCK "VarFileInfo"

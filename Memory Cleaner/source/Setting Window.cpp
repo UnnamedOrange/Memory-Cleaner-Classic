@@ -186,7 +186,7 @@ namespace SettingWindow
 						TEXT("检测到您可能正在进行文件操作，重启资源管理器将会终止这些操作。")
 						TEXT("确定要重启资源管理器吗？"),
 						TEXT("提示"), MB_ICONINFORMATION | MB_OKCANCEL);
-					return bRet == IDCANCEL;
+					return bRet == IDOK;
 				}
 				return true;
 			};
@@ -195,17 +195,17 @@ namespace SettingWindow
 			{
 				if (HWND hwndFound = FindWindow(TEXT("OperationStatusWindow"), NULL))
 				{
-					if (ASK(hwndFound))
+					if (!ASK(hwndFound))
 						break;
 				}
 				else if (hwndFound = FindWindow(TEXT("#32770"), TEXT("正在复制...")))
 				{
-					if (ASK(hwndFound))
+					if (!ASK(hwndFound))
 						break;
 				}
 				else if (hwndFound = FindWindow(TEXT("#32770"), TEXT("正在移动...")))
 				{
-					if (ASK(hwndFound))
+					if (!ASK(hwndFound))
 						break;
 				}
 				HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, FALSE, tk::GetPIdFromWindow(GetShellWindow()));
