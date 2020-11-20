@@ -13,12 +13,13 @@
 #define IDC_TEXT2                       1002
 #define IDC_TEXT3                       1003
 #define IDC_TEXT4                       1004
-#define IDC_SCROLLBAR                   1005
-#define IDC_STATIC_TRANSPARENT          1006
-#define IDC_BUTTON_UNFOLD               1007
-#define IDC_BUTTON_FOLD                 1008
-#define IDC_CHECK_SHOW                  1011
-#define IDC_CHECK_AMINATION             1012
+#define IDC_TEXT5                       1005
+#define IDC_SCROLLBAR                   1006
+#define IDC_STATIC_TRANSPARENT          1007
+#define IDC_BUTTON_UNFOLD               1008
+#define IDC_BUTTON_FOLD                 1009
+#define IDC_CHECK_SHOW                  1010
+#define IDC_CHECK_AMINATION             1011
 #define IDC_CHECK_AUTOLAUNCH            1021
 #define IDC_CHECK_QUICKER               1022
 #define IDC_CHECK_AUTOCLEAN             1023
@@ -35,11 +36,7 @@
 #define IDM_CLIP                        40004
 #define IDM_EXPLORER                    40005
 #define IDM_TASKMGR                     40006
-#define ID_40009                        40009
-#define ID_40010                        40010
-#define IDM_LOGOFF                      40011
-#define ID_40012                        40012
-#define IDM_PYTHON                      40013
+#define IDM_LOGOFF                      40007
 
 // Next default values for new objects
 // 

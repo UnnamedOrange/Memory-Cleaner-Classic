@@ -52,8 +52,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,3,0,1
- PRODUCTVERSION 3,3,0,1
+ FILEVERSION 3,3,1,0
+ PRODUCTVERSION 3,3,1,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -70,12 +70,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "UnnamedOrange"
             VALUE "FileDescription", "Memory Cleaner"
-            VALUE "FileVersion", "3.3.0.1"
+            VALUE "FileVersion", "3.3.1.0"
             VALUE "InternalName", "Memory Cleaner.exe"
             VALUE "LegalCopyright", "Copyright (C) 2016-2020"
-            VALUE "OriginalFilename", "Memory Cleaner.exe"
+            VALUE "OriginalFilename", "memory_cleaner_x64.exe"
             VALUE "ProductName", "Memory Cleaner"
-            VALUE "ProductVersion", "3.3.0.1"
+            VALUE "ProductVersion", "3.3.1.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -98,15 +98,15 @@ MENU IDR_MENU_SETTING
 CLASS "Wnd::Setting"
 FONT 9, "Segoe UI", 400, 0, 0x0
 BEGIN
-    CONTROL         "",IDC_TEXT1,"Wnd::Text",WS_TABSTOP,7,82,108,16
-    CONTROL         "",IDC_MEMPAD,"Wnd::MemPad",WS_TABSTOP,7,7,217,63
-    CONTROL         "",IDC_TEXT2,"Wnd::Text",WS_TABSTOP,116,82,108,16
-    CONTROL         "",IDC_TEXT3,"Wnd::Text",WS_TABSTOP,7,113,108,16
-    CONTROL         "",IDC_TEXT4,"Wnd::Text",WS_TABSTOP,116,113,108,16
-    LTEXT           "物理内存",IDC_STATIC,7,74,108,8,SS_CENTERIMAGE
-    LTEXT           "已提交",IDC_STATIC,116,74,108,8,SS_CENTERIMAGE
-    LTEXT           "上传流量总量",IDC_STATIC,7,105,108,8,SS_CENTERIMAGE
-    LTEXT           "下载流量总量",IDC_STATIC,116,105,108,8,SS_CENTERIMAGE
+    CONTROL         "",IDC_TEXT1,"Wnd::Text",WS_TABSTOP,7,56,108,16
+    CONTROL         "",IDC_MEMPAD,"Wnd::MemPad",WS_TABSTOP,7,7,217,37
+    CONTROL         "",IDC_TEXT2,"Wnd::Text",WS_TABSTOP,116,56,108,16
+    CONTROL         "",IDC_TEXT3,"Wnd::Text",WS_TABSTOP,7,85,108,16
+    CONTROL         "",IDC_TEXT4,"Wnd::Text",WS_TABSTOP,116,85,108,16
+    LTEXT           "物理内存",IDC_STATIC,7,48,108,8,SS_CENTERIMAGE
+    LTEXT           "已提交",IDC_STATIC,116,48,108,8,SS_CENTERIMAGE
+    LTEXT           "上传流量总量",IDC_STATIC,7,77,108,8,SS_CENTERIMAGE
+    LTEXT           "下载流量总量",IDC_STATIC,116,77,108,8,SS_CENTERIMAGE
     CHECKBOX        "显示悬浮窗",IDC_CHECK_SHOW,250,70,83,10,BS_CENTER | NOT WS_TABSTOP
     CHECKBOX        "动画效果",IDC_CHECK_AMINATION,250,42,83,10,BS_CENTER | NOT WS_TABSTOP
     CTEXT           "悬浮窗透明度",IDC_STATIC_TRANSPARENT,247,98,83,8,SS_CENTERIMAGE
@@ -117,6 +117,8 @@ BEGIN
     SCROLLBAR       IDC_SCROLLBAR,247,109,83,11
     PUSHBUTTON      ">",IDC_BUTTON_UNFOLD,231,7,8,122,NOT WS_TABSTOP
     PUSHBUTTON      "<",IDC_BUTTON_FOLD,342,7,8,122,NOT WS_TABSTOP
+    CONTROL         "",IDC_TEXT5,"Wnd::Text",WS_TABSTOP,7,113,217,16
+    LTEXT           "NVIDIA® GPU 温度",IDC_STATIC,7,105,108,8,SS_CENTERIMAGE
 END
 
 IDD_ABOUT DIALOGEX 0, 0, 273, 203

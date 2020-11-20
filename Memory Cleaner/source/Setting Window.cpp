@@ -236,11 +236,6 @@ namespace SettingWindow
 			ExitWindowsEx(EWX_LOGOFF, NULL);
 			break;
 		}
-		case IDM_PYTHON:
-		{
-
-			break;
-		}
 		//
 		case IDC_CHECK_SHOW:
 		{
@@ -307,12 +302,25 @@ namespace SettingWindow
 		PostMessage(GetDlgItem(hwnd, IDC_MEMPAD), WM_UPDATEINFO, 0, 0);
 
 		TCHAR szBuffer[tk::STRING_LENGTH];
-		tk::SetWindowTextFormat(GetDlgItem(hwndSetting, IDC_TEXT1), TEXT("%.1f / %.1f GB"), ((double)msex.ullTotalPhys - msex.ullAvailPhys) / 1024 / 1024 / 1024, (double)msex.ullTotalPhys / 1024 / 1024 / 1024);
-		tk::SetWindowTextFormat(GetDlgItem(hwndSetting, IDC_TEXT2), TEXT("%d / %d MB"), (DWORD)((msex.ullTotalPageFile - msex.ullAvailPageFile) / 1024 / 1024), (DWORD)(msex.ullTotalPageFile / 1024 / 1024));
+		tk::SetWindowTextFormat(GetDlgItem(hwndSetting, IDC_TEXT1), TEXT("%.1f / %.1f GiB"), ((double)msex.ullTotalPhys - msex.ullAvailPhys) / 1024 / 1024 / 1024, (double)msex.ullTotalPhys / 1024 / 1024 / 1024);
+		tk::SetWindowTextFormat(GetDlgItem(hwndSetting, IDC_TEXT2), TEXT("%d / %d MiB"), (DWORD)((msex.ullTotalPageFile - msex.ullAvailPageFile) / 1024 / 1024), (DWORD)(msex.ullTotalPageFile / 1024 / 1024));
 		Tool::FormatDataUnit(szBuffer, tk::STRING_LENGTH, (DWORD)ns.GetUploadTotal());
 		tk::SetWindowTextFormat(GetDlgItem(hwndSetting, IDC_TEXT3), TEXT("%s"), szBuffer);
 		Tool::FormatDataUnit(szBuffer, tk::STRING_LENGTH, (DWORD)ns.GetDownloadTotal());
 		tk::SetWindowTextFormat(GetDlgItem(hwndSetting, IDC_TEXT4), TEXT("%s"), szBuffer);
+
+		auto temps = nvt.get_nvgpu_temperatures();
+		if (temps.empty())
+			SetWindowTextW(GetDlgItem(hwndSetting, IDC_TEXT5), L"没有 NVIDIA® GPU");
+		else
+		{
+			std::wstring text;
+			text = std::to_wstring(temps[0]);
+			for (size_t i = 1; i < temps.size(); i++)
+				text += L" / " + std::to_wstring(temps[i]);
+			text += L" °C";
+			SetWindowTextW(GetDlgItem(hwndSetting, IDC_TEXT5), text.c_str());
+		}
 	}
 	VOID WndStruct::OnHScroll(HWND hwnd, HWND hwndCtl, UINT code, int pos)
 	{

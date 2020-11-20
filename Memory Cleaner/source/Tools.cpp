@@ -9,9 +9,9 @@ BOOL Tool::FormatDataUnit(LPTSTR lpText, size_t size, int64_t qwTotalByBytes)
 	const TCHAR* szUnit[] =
 	{
 		TEXT("B"),
-		TEXT("KB"),
-		TEXT("MB"),
-		TEXT("GB")
+		TEXT("KiB"),
+		TEXT("MiB"),
+		TEXT("GiB")
 	};
 	double floatRes = qwTotalByBytes;
 	const UINT maxSize = sizeof(szUnit) / sizeof(TCHAR*);
@@ -33,8 +33,8 @@ BOOL Tool::FormatSpeedUnit(LPTSTR lpText, size_t size, int64_t qwSpeedByBytes)
 	const TCHAR* szUnit[] =
 	{
 		TEXT("B/s"),
-		TEXT("KB/s"),
-		TEXT("MB/s")
+		TEXT("KiB/s"),
+		TEXT("MiB/s")
 	};
 	double floatRes = qwSpeedByBytes;
 	const UINT maxSize = sizeof(szUnit) / sizeof(TCHAR*);

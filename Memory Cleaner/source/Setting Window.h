@@ -2,6 +2,8 @@
 #include "..\TKernel\TKernel.h"
 #include "resource.h"
 
+#include "temperature.hpp"
+
 namespace SettingWindow
 {
 	VOID Create();
@@ -25,6 +27,8 @@ namespace SettingWindow
 		INT cxUnfold;
 		INT cxFold;
 		INT cxCnt;
+
+		NvThermal nvt;
 
 		WndStruct(HWND hwnd) :hWnd(hwnd), hThread(NULL), hEvent(NULL), hSignal(NULL),
 			bFoldStatus(TRUE), hwndUnfoldButton(NULL),

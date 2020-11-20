@@ -11,18 +11,36 @@
 class NvThermal
 {
 private:
+	NvAPI_Status init_status{};
 	NvPhysicalGpuHandle hPhysicalGpu[NVAPI_MAX_PHYSICAL_GPUS]{};
 	NvU32 ngpu{};
 	NvS32 temperatures[NVAPI_MAX_PHYSICAL_GPUS]{};
 
 	using seconds = std::chrono::duration<double>;
-	static constexpr seconds elapse{ 1.0 };
+	static constexpr seconds elapse{ 0.5 };
 
 	std::thread loop_thread;
 	std::mutex mtx_exit;
 	std::condition_variable cv;
 	std::atomic<bool> exit{};
 	mutable std::mutex mtx_access;
+	void update()
+	{
+		std::lock_guard lock_guard(mtx_access);
+		NvAPI_Status ret = NvAPI_EnumPhysicalGPUs(hPhysicalGpu, &ngpu);
+		if (ret != NVAPI_OK)
+			ngpu = 0;
+
+		NV_GPU_THERMAL_SETTINGS currentTemp{ NV_GPU_THERMAL_SETTINGS_VER };
+		for (NvU32 idx = 0; idx < ngpu; idx++)
+		{
+			ret = NvAPI_GPU_GetThermalSettings(hPhysicalGpu[idx],
+				NVAPI_THERMAL_TARGET_ALL, &currentTemp); // 获取温度
+			temperatures[idx] = (ret == NVAPI_OK) ?
+				currentTemp.sensor[0].currentTemp :
+				0;
+		}
+	}
 	void loop()
 	{
 		while (true)
@@ -35,21 +53,7 @@ private:
 				});
 			if (exit)
 				break;
-
-			std::lock_guard lock_guard(mtx_access);
-			NvAPI_Status ret = NvAPI_EnumPhysicalGPUs(hPhysicalGpu, &ngpu);
-			if (ret != NVAPI_OK)
-				ngpu = 0;
-
-			NV_GPU_THERMAL_SETTINGS currentTemp{ NV_GPU_THERMAL_SETTINGS_VER };
-			for (NvU32 idx = 0; idx < ngpu; idx++)
-			{
-				ret = NvAPI_GPU_GetThermalSettings(hPhysicalGpu[idx],
-					NVAPI_THERMAL_TARGET_ALL, &currentTemp); // 获取温度
-				temperatures[idx] = (ret == NVAPI_OK) ?
-					currentTemp.sensor[0].currentTemp :
-					0;
-			}
+			update();
 		}
 	}
 public:
@@ -62,18 +66,21 @@ public:
 public:
 	NvThermal()
 	{
-		NvAPI_Status ret = NVAPI_OK;
-		ret = NvAPI_Initialize();
-		if (ret != NVAPI_OK)
-			throw std::runtime_error("Fail to NvAPI_Initialize.");
-
-		loop_thread = std::move(std::thread(&NvThermal::loop, this));
+		init_status = NvAPI_Initialize();
+		if (init_status == NVAPI_OK)
+		{
+			update();
+			loop_thread = std::move(std::thread(&NvThermal::loop, this));
+		}
 	}
 	~NvThermal()
 	{
-		NvAPI_Unload();
-		exit = true;
-		cv.notify_one();
-		loop_thread.join();
+		if (init_status == NVAPI_OK)
+		{
+			NvAPI_Unload();
+			exit = true;
+			cv.notify_one();
+			loop_thread.join();
+		}
 	}
 };

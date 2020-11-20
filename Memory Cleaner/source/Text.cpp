@@ -81,7 +81,7 @@ namespace Text
 		FontFamily fontFamily;
 		INT found;
 		PrivateFont.GetFamilies(1, &fontFamily, &found);
-		Font font(&fontFamily, dpi(20), FontStyleRegular, UnitPixel);
+		Font font(&fontFamily, dpi(19), FontStyleRegular, UnitPixel);
 
 		StringFormat sf;
 		sf.SetLineAlignment(StringAlignment::StringAlignmentCenter);
