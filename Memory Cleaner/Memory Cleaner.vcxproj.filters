@@ -60,6 +60,9 @@
     <ClInclude Include="source\Tools.h">
       <Filter>头文件\source</Filter>
     </ClInclude>
+    <ClInclude Include="source\temperature.hpp">
+      <Filter>头文件\source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TKernel\TKernel.cpp">
