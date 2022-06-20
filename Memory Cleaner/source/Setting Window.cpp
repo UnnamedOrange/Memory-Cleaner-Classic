@@ -24,7 +24,8 @@ namespace SettingWindow
 //杂项
 VOID SettingWindow::Create()
 {
-	tk::CreateThreadEz(Run, NULL, NULL, NULL, &hThread);
+	if (!hThread)
+		tk::CreateThreadEz(Run, NULL, NULL, NULL, &hThread);
 }
 BOOL SettingWindow::RegisterClasses()
 {
@@ -112,8 +113,6 @@ namespace SettingWindow
 {
 	BOOL WndStruct::OnCreate(HWND hwnd, LPCREATESTRUCT lpCreateStruct)
 	{
-		//确保句柄赋值
-		hwndSetting = hwnd;
 		SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)GetIconLarge());
 
 		PostMessage(hwnd, WM_INIT, 0, 0);
@@ -121,6 +120,9 @@ namespace SettingWindow
 	}
 	VOID WndStruct::OnInit(HWND hwnd)
 	{
+		//确保句柄赋值
+		hwndSetting = hwnd;
+
 		//初始化控件信息
 		hwndUnfoldButton = GetDlgItem(hwnd, IDC_BUTTON_UNFOLD);
 
