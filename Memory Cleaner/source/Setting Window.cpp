@@ -311,18 +311,23 @@ namespace SettingWindow
 		Tool::FormatDataUnit(szBuffer, tk::STRING_LENGTH, (DWORD)ns.GetDownloadTotal());
 		tk::SetWindowTextFormat(GetDlgItem(hwndSetting, IDC_TEXT4), TEXT("%s"), szBuffer);
 
-		auto temps = nvt.get_nvgpu_temperatures();
-		if (temps.empty())
-			SetWindowTextW(GetDlgItem(hwndSetting, IDC_TEXT5), L"没有 NVIDIA® GPU");
-		else
-		{
-			std::wstring text;
-			text = std::to_wstring(temps[0]);
-			for (size_t i = 1; i < temps.size(); i++)
-				text += L" / " + std::to_wstring(temps[i]);
-			text += L" °C";
-			SetWindowTextW(GetDlgItem(hwndSetting, IDC_TEXT5), text.c_str());
-		}
+        auto temps = nvt.get_nvgpu_temperatures();
+        if (temps.empty())
+            SetWindowTextW(GetDlgItem(hwndSetting, IDC_TEXT5),
+                           L"没有 NVIDIA® GPU");
+        else if (temps[0] == NvThermal::stop_temperature)
+        {
+            SetWindowTextW(GetDlgItem(hwndSetting, IDC_TEXT5), L"省电模式");
+        }
+        else
+        {
+            std::wstring text;
+            text = std::to_wstring(temps[0]);
+            for (size_t i = 1; i < temps.size(); i++)
+                text += L" / " + std::to_wstring(temps[i]);
+            text += L" °C";
+            SetWindowTextW(GetDlgItem(hwndSetting, IDC_TEXT5), text.c_str());
+        }
 	}
 	VOID WndStruct::OnHScroll(HWND hwnd, HWND hwndCtl, UINT code, int pos)
 	{
