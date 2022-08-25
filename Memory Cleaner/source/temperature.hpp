@@ -3,6 +3,7 @@
 #include <chrono>
 #include <condition_variable>
 #include <mutex>
+#include <numeric>
 #include <thread>
 #include <vector>
 
@@ -18,6 +19,8 @@ struct _nv_thermal_ll
     NvU32 gpu_count{};
     NvPhysicalGpuHandle physical_gpu_handles[NVAPI_MAX_PHYSICAL_GPUS]{};
     NvS32 temperatures[NVAPI_MAX_PHYSICAL_GPUS]{};
+    static constexpr NvS32 stop_temperature =
+        (std::numeric_limits<NvS32>::max)();
 
     /**
      * @brief Enumerate physical GPUs.
@@ -45,13 +48,12 @@ struct _nv_thermal_ll
             NvAPI_Status result = NvAPI_GPU_GetThermalSettings(
                 physical_gpu_handles[idx], NVAPI_THERMAL_TARGET_ALL,
                 &thermal_settings);
-            if (result != NVAPI_OK)
+            if (result == NVAPI_GPU_NOT_POWERED)
+                temperatures[idx] = stop_temperature;
+            else if (result != NVAPI_OK)
                 temperatures[idx] = 0;
             else
-            {
                 temperatures[idx] = thermal_settings.sensor[0].currentTemp;
-                break;
-            }
         }
     }
 };
@@ -98,6 +100,7 @@ private:
     }
 
 public:
+    static constexpr auto stop_temperature = _nv_thermal_ll::stop_temperature;
     auto get_nvgpu_temperatures() const
     {
         std::lock_guard lock_guard(mutex_access);
