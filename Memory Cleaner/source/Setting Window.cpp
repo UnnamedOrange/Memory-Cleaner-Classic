@@ -306,9 +306,9 @@ namespace SettingWindow
 		TCHAR szBuffer[tk::STRING_LENGTH];
 		tk::SetWindowTextFormat(GetDlgItem(hwndSetting, IDC_TEXT1), TEXT("%.1f / %.1f GiB"), ((double)msex.ullTotalPhys - msex.ullAvailPhys) / 1024 / 1024 / 1024, (double)msex.ullTotalPhys / 1024 / 1024 / 1024);
 		tk::SetWindowTextFormat(GetDlgItem(hwndSetting, IDC_TEXT2), TEXT("%d / %d MiB"), (DWORD)((msex.ullTotalPageFile - msex.ullAvailPageFile) / 1024 / 1024), (DWORD)(msex.ullTotalPageFile / 1024 / 1024));
-		Tool::FormatDataUnit(szBuffer, tk::STRING_LENGTH, (DWORD)ns.GetUploadTotal());
+		Tool::FormatDataUnit(szBuffer, tk::STRING_LENGTH, ns.GetUploadTotal());
 		tk::SetWindowTextFormat(GetDlgItem(hwndSetting, IDC_TEXT3), TEXT("%s"), szBuffer);
-		Tool::FormatDataUnit(szBuffer, tk::STRING_LENGTH, (DWORD)ns.GetDownloadTotal());
+		Tool::FormatDataUnit(szBuffer, tk::STRING_LENGTH, ns.GetDownloadTotal());
 		tk::SetWindowTextFormat(GetDlgItem(hwndSetting, IDC_TEXT4), TEXT("%s"), szBuffer);
 
         auto temps = nvt.get_nvgpu_temperatures();
