@@ -12,11 +12,11 @@
 
 //Information
 #ifdef _DEBUG
-const TCHAR szGUID[] = TEXT("5CB3ADF3-C482-4D95-A494-DFCADC4ECB55");
+constexpr const TCHAR szGUID[] = TEXT("5CB3ADF3-C482-4D95-A494-DFCADC4ECB55");
 #else
-const TCHAR szGUID[] = TEXT("B5708F25-B087-407A-B7E4-399FC8C595F5");
+constexpr const TCHAR szGUID[] = TEXT("B5708F25-B087-407A-B7E4-399FC8C595F5");
 #endif
-const TCHAR szAppName[] = TEXT("Memory Cleaner");
+constexpr const TCHAR szAppName[] = TEXT("Memory Cleaner");
 
 //App Class
 MemoryCleaner mc(szGUID, szAppName);

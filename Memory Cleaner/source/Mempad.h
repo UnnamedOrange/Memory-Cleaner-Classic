@@ -26,9 +26,9 @@ namespace Mempad
 		INT bSide; //鼠标在哪边
 		INT iShowWhat; // 0 - 内存, 1 - 网速
 
-		static const INT maxn = 60;
-		static const INT cxWidth = 8;
-		static const INT nxInterval = 6;
+		static constexpr INT maxn = 60;
+		static constexpr INT cxWidth = 8;
+		static constexpr INT nxInterval = 6;
 		Tool::MonotonousQueue<ULONGLONG, maxn> memLoad;
 		Tool::MonotonousQueue<INT, maxn> downSpeed;
 		Tool::MonotonousQueue<INT, maxn> upSpeed;

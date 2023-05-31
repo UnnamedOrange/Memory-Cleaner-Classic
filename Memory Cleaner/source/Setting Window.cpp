@@ -15,8 +15,8 @@
 //声明
 namespace SettingWindow
 {
-	const TCHAR szClassName[] = TEXT("Wnd::Setting");
-	const TCHAR szCaption[] = TEXT("Memory Cleaner");
+	constexpr TCHAR szClassName[] = TEXT("Wnd::Setting");
+	constexpr TCHAR szCaption[] = TEXT("Memory Cleaner");
 	HANDLE hThread;
 	HWND hwndSetting;
 }

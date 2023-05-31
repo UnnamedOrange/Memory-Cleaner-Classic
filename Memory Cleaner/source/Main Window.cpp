@@ -11,8 +11,8 @@
 // 声明
 namespace MainWindow
 {
-	const TCHAR szClassName[] = TEXT("Memory Cleaner");
-	const TCHAR szCaption[] = TEXT("Memory Cleaner");
+	constexpr TCHAR szClassName[] = TEXT("Memory Cleaner");
+	constexpr TCHAR szCaption[] = TEXT("Memory Cleaner");
 	HWND hwndMain;
 
 	tk::Tray tray;
@@ -81,8 +81,8 @@ namespace MainWindow
 	{
 		WndStruct& ws = *(WndStruct*)lpParam;
 
-		const INT step = 5;
-		const DWORD delay = 15;
+		constexpr INT step = 5;
+		constexpr DWORD delay = 15;
 		HWND hwnd = ws.hWnd;
 		DWORD& cnt = ws.dwTransparent;
 		DWORD& cfg = mc.mcc.dwTransparent;

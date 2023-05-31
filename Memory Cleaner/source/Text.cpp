@@ -8,8 +8,8 @@
 //声明
 namespace Text
 {
-	const TCHAR szClassName[] = TEXT("Wnd::Text");
-	const TCHAR szCaption[] = TEXT("");
+	constexpr TCHAR szClassName[] = TEXT("Wnd::Text");
+	constexpr TCHAR szCaption[] = TEXT("");
 
 	COLORREF colorBk;
 }
@@ -38,8 +38,8 @@ namespace Text
 	VOID CALLBACK AnimationTimer(HWND hwnd, UINT message, UINT_PTR iTimerId, DWORD dwTime)
 	{
 		WndStruct& ws = *(WndStruct*)(GetWindowLongPtr(hwnd, GWLP_USERDATA));
-		const DWORD delay[] = { 500, 38 };
-		const INT times = 4;
+		constexpr DWORD delay[] = { 500, 38 };
+		constexpr INT times = 4;
 		ws.timer.Set(hwnd, 0, delay[mc.mcc.bAnimation]);
 
 		HDC hdc = GetDC(hwnd);

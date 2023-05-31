@@ -16,7 +16,7 @@ namespace Tool
 		std::deque<Item> minDeq;
 
 	public:
-		VOID push(const Item x)
+		VOID push(const Item& x)
 		{
 			origin.push_back(x);
 			while (!maxDeq.empty() && maxDeq.back() < x) maxDeq.pop_back();

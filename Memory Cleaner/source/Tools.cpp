@@ -6,7 +6,7 @@
 
 BOOL Tool::FormatDataUnit(LPTSTR lpText, size_t size, int64_t qwTotalByBytes)
 {
-	const TCHAR* szUnit[] =
+	constexpr const TCHAR* szUnit[] =
 	{
 		TEXT("B"),
 		TEXT("KiB"),
@@ -14,7 +14,7 @@ BOOL Tool::FormatDataUnit(LPTSTR lpText, size_t size, int64_t qwTotalByBytes)
 		TEXT("GiB")
 	};
 	double floatRes = qwTotalByBytes;
-	const UINT maxSize = sizeof(szUnit) / sizeof(TCHAR*);
+	constexpr UINT maxSize = sizeof(szUnit) / sizeof(TCHAR*);
 	UINT index = 0;
 	for (index; qwTotalByBytes / 1024 && index < maxSize; index++)
 	{
@@ -30,14 +30,14 @@ BOOL Tool::FormatDataUnit(LPTSTR lpText, size_t size, int64_t qwTotalByBytes)
 }
 BOOL Tool::FormatSpeedUnit(LPTSTR lpText, size_t size, int64_t qwSpeedByBytes)
 {
-	const TCHAR* szUnit[] =
+	constexpr const TCHAR* szUnit[] =
 	{
 		TEXT("B/s"),
 		TEXT("KiB/s"),
 		TEXT("MiB/s")
 	};
 	double floatRes = qwSpeedByBytes;
-	const UINT maxSize = sizeof(szUnit) / sizeof(TCHAR*);
+    constexpr UINT maxSize = sizeof(szUnit) / sizeof(TCHAR*);
 	UINT index = 0;
 	for (index; qwSpeedByBytes / 1024 && index < maxSize; index++)
 	{
@@ -53,13 +53,13 @@ BOOL Tool::FormatSpeedUnit(LPTSTR lpText, size_t size, int64_t qwSpeedByBytes)
 }
 BOOL Tool::FormatTimeUnit(LPTSTR lpText, size_t size, int64_t qwTimeByS)
 {
-	const TCHAR* szUnit[] =
+	constexpr const TCHAR* szUnit[] =
 	{
 		TEXT("s"),
 		TEXT("min"),
 		TEXT("h")
 	};
-	const UINT maxSize = sizeof(szUnit) / sizeof(TCHAR*);
+	constexpr UINT maxSize = sizeof(szUnit) / sizeof(TCHAR*);
 	int64_t qwTimes[maxSize] = { NULL };
 	INT index = 0;
 	for (index; index < maxSize - 1; index++)

@@ -112,7 +112,7 @@ public:
 
 	DWORD OnThread()
 	{
-		const size_t iBaseSize = 65536;
+		constexpr size_t iBaseSize = 65536;
 		PMIB_IFTABLE pTable = PMIB_IFTABLE(new BYTE[iBaseSize]);
 		if (!pTable)
 		{

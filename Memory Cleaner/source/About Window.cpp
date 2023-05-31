@@ -9,17 +9,17 @@
 //声明
 namespace AboutWindow
 {
-	const TCHAR szCaption[] = TEXT("关于 Memory Cleaner");
+	constexpr TCHAR szCaption[] = TEXT("关于 Memory Cleaner");
 
-	const TCHAR* szItem[] =
+	constexpr const TCHAR* szItem[] =
 	{
 		TEXT("关于 Memory Cleaner"),
 		TEXT("性能"),
 		TEXT("日志")
 	};
-	const size_t size = sizeof(szItem) / sizeof(TCHAR*);
+	constexpr size_t size = sizeof(szItem) / sizeof(TCHAR*);
 
-	const wchar_t* szText[] =
+	constexpr const wchar_t* szText[] =
 	{
 		L"Author: UnnamedOrange\r\n"
 		"Version: "

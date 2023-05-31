@@ -8,8 +8,8 @@
 //声明
 namespace Mempad
 {
-	const TCHAR szClassName[] = TEXT("Wnd::Mempad");
-	const TCHAR szCaption[] = TEXT("Mempad");
+	constexpr TCHAR szClassName[] = TEXT("Wnd::Mempad");
+	constexpr TCHAR szCaption[] = TEXT("Mempad");
 }
 
 //杂项
@@ -36,8 +36,8 @@ namespace Mempad
 	VOID CALLBACK AnimationTimer(HWND hwnd, UINT message, UINT_PTR iTimerId, DWORD dwTime)
 	{
 		WndStruct& ws = *(WndStruct*)(GetWindowLongPtr(hwnd, GWLP_USERDATA));
-		const DWORD delay[] = { 500, 38 };
-		const INT times = 4;
+		constexpr DWORD delay[] = { 500, 38 };
+		constexpr INT times = 4;
 		ws.timer.Set(hwnd, 0, delay[mc.mcc.bAnimation]);
 
 		HDC hdc = GetDC(hwnd);
