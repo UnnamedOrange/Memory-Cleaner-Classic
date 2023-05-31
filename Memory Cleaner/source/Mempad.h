@@ -29,7 +29,6 @@ namespace Mempad
 		static const INT maxn = 60;
 		static const INT cxWidth = 8;
 		static const INT nxInterval = 6;
-		INT iMaxNetSpeed;
 		Tool::MonotonousQueue<ULONGLONG, maxn> memLoad;
 		Tool::MonotonousQueue<INT, maxn> downSpeed;
 		Tool::MonotonousQueue<INT, maxn> upSpeed;
@@ -44,7 +43,6 @@ namespace Mempad
 			memLoad.push(0);
 			downSpeed.push(0);
 			upSpeed.push(0);
-			iMaxNetSpeed = 64; //64 B/s
 
 			RECT rect;
 			GetWindowRect(hwnd, &rect);
@@ -60,9 +58,6 @@ namespace Mempad
 
 			INT iDownloadSpeed = ns.GetDownloadSpeed();
 			INT iUploadSpeed = ns.GetUploadSpeed();
-			INT iBigger = max(downSpeed.max_element(), upSpeed.max_element());
-			iMaxNetSpeed = MulDiv(iBigger, 5, 4);
-			iMaxNetSpeed = max(iMaxNetSpeed, 64);
 			downSpeed.push(iDownloadSpeed);
 			upSpeed.push(iUploadSpeed);
 

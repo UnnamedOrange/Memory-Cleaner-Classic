@@ -218,6 +218,10 @@ namespace Mempad
 				PaintProc::PaintLine(*this, graphics, PenRuler);
 
 				//画块
+                auto iMaxNetSpeed =
+                    (std::max)(downSpeed.max_element(), upSpeed.max_element());
+                iMaxNetSpeed = MulDiv(iMaxNetSpeed, 5, 4);
+                iMaxNetSpeed = (std::max)(iMaxNetSpeed, 64);
 				PaintProc::PaintArea(*this, graphics, PenBorder, BrushFill,
 					downSpeed, iMaxNetSpeed, TRUE);
 				PaintProc::PaintArea(*this, graphics, PenBorder, BrushFill,
