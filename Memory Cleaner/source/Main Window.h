@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "..\TKernel\TKernel.h"
+#include "WndPos.h"
 #include "resource.h"
 
 namespace MainWindow
@@ -16,7 +17,7 @@ namespace MainWindow
 		HANDLE hEvent;
 		HANDLE hSignal;
 
-		tk::WndPos wp;
+		WndPos wp;
 
 		DWORD dwTransparent;
 		INT bMouseHover;
@@ -26,7 +27,7 @@ namespace MainWindow
 			wp(hwnd),
 			dwTransparent(NULL), bMouseHover(FALSE), bMouseDown(FALSE)
 		{
-			wp.SetInScreen();
+			wp.enable_confine_to_screen();
 			hSignal = CreateEvent(NULL, TRUE, FALSE, NULL);
 			hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 			tk::CreateThreadEz(AnimationThread, this, NULL, NULL, &hThread);
