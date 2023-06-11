@@ -162,6 +162,7 @@
     <ClCompile Include="source\Setting Window.cpp" />
     <ClCompile Include="source\Text.cpp" />
     <ClCompile Include="source\Tools.cpp" />
+    <ClCompile Include="source\WndPos.cpp" />
     <ClCompile Include="TKernel\TKernel.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="source\temperature.hpp" />
     <ClInclude Include="source\Text.h" />
     <ClInclude Include="source\Tools.h" />
+    <ClInclude Include="source\WndPos.h" />
     <ClInclude Include="TKernel\TKernel.h" />
   </ItemGroup>
   <ItemGroup>

@@ -63,6 +63,9 @@
     <ClInclude Include="source\temperature.hpp">
       <Filter>头文件\source</Filter>
     </ClInclude>
+    <ClInclude Include="source\WndPos.h">
+      <Filter>头文件\source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TKernel\TKernel.cpp">
@@ -87,6 +90,9 @@
       <Filter>源文件\source</Filter>
     </ClCompile>
     <ClCompile Include="source\Tools.cpp">
+      <Filter>源文件\source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WndPos.cpp">
       <Filter>源文件\source</Filter>
     </ClCompile>
   </ItemGroup>
