@@ -220,7 +220,6 @@ namespace SettingWindow
 				tk::RunBat(TEXT("start explorer"), FALSE, FALSE);
 			}
 			break;
-#undef ASK
 		}
 		case IDM_TASKMGR:
 		{
